@@ -6,9 +6,12 @@ on:
       - main  # Change this to your default branch
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
-
+    permissions: 
+      id-token: write
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -29,6 +32,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
